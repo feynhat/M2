@@ -5,7 +5,8 @@ star := IMG { "src" => replace("PKG","Style",currentLayout#"package") | "GoldSta
 document {
      Key => "changes to Macaulay2, by version",
      Subnodes => {
-	  TO "changes made for the next release",
+	  -- TO "changes made for the next release",
+	  TO "changes, 1.25.11",
 	  TO "changes, 1.25.05",
 	  TO "changes, 1.24.11",
 	  TO "changes, 1.24.05",
@@ -66,36 +67,63 @@ changesHelper List := opt -> pkgnames -> (
 	    << endl)))
 
 document {
-    Key => "changes made for the next release",
+    Key => "changes, 1.25.11",
         UL {
 	LI { BOLD "upcoming breaking changes:",
 	    UL {
-		LI {}
+		LI { "Beginning in the 1.26.05 release, current routines involving chain complexes and graded modules
+		    will be superseded by new functorial homological algebra routines in the ", TO "Complexes::Complexes",
+		    " package. Users and package developers are encouraged to preview the upcoming changes by adding ",
+		    TT "HomologicalAlgebraPackage = \"Complexes\"", " to their ", TO "initialization file", " and
+		    reporting any bugs via email or ", HREF{"https://github.com/Macaulay2/M2/issues/3778", "GitHub"}, "." },
 	    }
 	},
 	LI { "packages that have been published and certified:",
 	    UL {
-		LI {}
+		LI { star, " ", TO "ExteriorExtensions::ExteriorExtensions", ", a package by Luke Oeding for building an algebra extending an exterior algebra, has been published." },
+		LI { star, " ", TO "MatrixSchubert::MatrixSchubert", ", a package by Ayah Almousa, Sean Grate, Daoji Huang, Patricia Klein, Adam LaClair, Yuyuan Luo, and Joseph McDonough for functions for investigating ASM and matrix Schubert varieties, has been published." },
+		LI { star, " ", TO "MultigradedBGG::MultigradedBGG", ", a package by Maya Banks, Michael K. Brown, Tara Gomes, Prashanth Sridhar, Eduardo Torres Davila, and Sasha Zotine for the multigraded BGG correspondence and differential modules, has been published." },
 		}
 	    },
 	LI { "new packages:",
 	    UL {
-		LI {}
+		LI { TO "CpMackeyFunctors::CpMackeyFunctors", ", a package by Thomas Brazelton, David Chan, Benjamin Mudrak, Ben Spitz, Chase Vogeli, Chenglu Wang, Michael R. Zeng, and Sasha Zotine for homological algebra with Mackey functors for cyclic groups of prime order, has been added." },
+		LI { TO "ExteriorExtensions::ExteriorExtensions", ", a package by Luke Oeding for building an algebra extending an exterior algebra, has been added." },
+		LI { TO "JSONRPC::JSONRPC", ", a package by Doug Torrance for implementing JSON-RPC servers, has been added." },
+		LI { TO "MatrixFactorizations::MatrixFactorizations", ", a package by David Favero, Sasha Pevzner, Timothy Tribone, and Keller VandeBogert for computing with matrix factorizations of different lengths, has been added." },
+		LI { TO "NonPrincipalTestIdeals::NonPrincipalTestIdeals", ", a package by Trung Chau, Karl Schwede, and Hunter Simper for singularities of pairs with non-principal ideals, has been added." },
+		LI { TO "PathSignatures::PathSignatures", ", a package by Felix Lotter, Oriol Reig, Angelo El Saliby, and Carlos Amendola for working with algebraic path signatures, has been added." },
+		LI { TO "Tableaux::Tableaux", ", a package by John Graf for constructing skew tableaux, has been added." },
 		}
 	    },
 	LI { "improved packages:",
 	    UL {
-		LI {}
+		LI { TO "A1BrouwerDegrees::A1BrouwerDegrees", " has been updated to version 2.0, with significant updates." },
+		LI { TO "CharacteristicClasses::CharacteristicClasses", " has been updated to version 2.1, with a new method to compute the Euler characteristic of a complex affine variety." },
+		LI { TO "GeometricDecomposability::GeometricDecomposability", " has been updated to version 1.4.3, adding aliases for methods with long names."},
+		LI { TO "Msolve::Msolve", " has been updated to version 1.24.06, fixing a bug in ", TO "Msolve::msolveRUR", "."},
+		LI { TO "MultigradedImplicitization::MultigradedImplicitization", " has been updated to version 1.1, with an option to use interpolation to compute polynomials in multigraded components and changes to speed up multidegree and basis computation." },
+		LI { TO "SCMAlgebras::SCMAlgebras", " has been updated to version 1.1, adding new methods.  It can now compute the unmixed layer of an ideal, check for unmixedness, and check for canonical Cohen-Macaulayness."},
+		LI { TO "VectorGraphics::VectorGraphics", " has been updated to version 1.1.1 with a bug fix and assorted minor changes." },
+		LI { TO "SRdeformations::SRdeformations", " has been updated to version 0.53, using ", TO "Polyhedra::Polyhedra", " instead of ", TO "OldPolyhedra::OldPolyhedra", "."},
+		LI { TO "ToricHigherDirectImages::ToricHigherDirectImages", " has been updated to version 1.1, fixing unexpected behavior from the output of ", TO "ToricHigherDirectImages::HDI", "."},
+		LI { TO "VersalDeformations::VersalDeformations", " has been updated to version 4.0, adding functionality for dealing with deformations of pairs of schemes or modules."},
+		LI { TO "WhitneyStratifications::WhitneyStratifications", " has been updated to version 2.23, with several new methods to compute Whitney stratifications using polar varieties and to compute the Euler characteristic of the complex link and the local Euler obstruction using Whitney stratification." },
 		}
 	    },
 	LI { "functionality added or improved:",
 	    UL {
-		LI {}
+		LI { "The method ", TO (set, HashTable), " has been added to create a set from the keys of a hash table."},
+		LI { "The method ", TO (toList, Tally), " has been added as a synonym for ", TO (elements, Tally), "."},
+		LI { "A new ", TO "Text::IFRAME", " class has been added for using ", CODE "<iframe>", " tags in html." },
+		LI { "Package authors may now add tests as individual files in the ", CODE "tests", " subdirectory of the package auxiliary directory without the need to use the ", TO symbol TEST, " keyword.  See ", TO check, "."},
+		LI { "A warning message is now displayed when reloading a package reminding users to recreate instances of any types from that package." },
 		}
 	    },
 	LI { "functionality changed in a way that could break code:",
 	    UL {
-		LI {}
+		LI { "The Divisor package has been renamed to ", TO "WeilDivisors::WeilDivisors", "."},
+		LI { "An error is now raised if a function parameter list contains a duplicate symbol." },
 		}
 	    }
 	}
